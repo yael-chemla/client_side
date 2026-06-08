@@ -1,0 +1,1 @@
+export default function InboxPage() { return <div>תיבת הודעות (זמני) 📬</div>; }

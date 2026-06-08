@@ -1,0 +1,81 @@
+:root {
+  --sand-color: #d4a373;
+  --bg-soft: #fcfbf7;
+  --text-main: #4a4a4a;
+}
+
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-group { display: flex; align-items: center; gap: 15px; flex: 1; }
+.nav-right { justify-content: flex-start; }
+.nav-center { flex: 1; display: flex; justify-content: center; }
+.nav-left { justify-content: flex-end; }
+
+.logo-text { font-size: 24px; font-weight: bold; color: var(--sand-color); text-decoration: none; }
+
+/* כפתור הפרופיל החדש */
+.nav-link-profile-action {
+  text-decoration: none;
+  color: var(--sand-color);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px;
+}
+
+/* תצוגת משתמש (שם + תמונה) */
+.user-profile-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 8px 16px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.nav-link:hover { border-color: var(--sand-color); background: #fdfaf7; }
+
+.nav-btn-register {
+  background: var(--sand-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.nav-btn-logout {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #888;
+}
+
+.nav-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+
+@media (max-width: 768px) {
+  .navbar-sticky { padding: 10px 15px; }
+  .nav-link, .nav-btn-logout, .nav-btn-register, .nav-link-profile-action { padding: 5px 8px; font-size: 11px; }
+  .logo-text { font-size: 18px; }
+  .nav-group { gap: 5px; }
+}

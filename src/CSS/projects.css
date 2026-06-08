@@ -1,0 +1,483 @@
+/* הגדרות בסיס */
+:root {
+  --sand-color: #d4a373;
+  --bg-soft: #fcfbf7;
+  --text-main: #4a4a4a;
+}
+
+/* --- עמוד רשימת פרויקטים --- */
+.projects-page-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  margin: 15px 15px 5px;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.project-card p {
+  margin: 0 15px 10px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.project-card button {
+  width: 70%;
+  margin: 0 auto;
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.project-card button:hover {
+  background-color: #000;
+  color: white;
+}
+
+/* --- עמוד פרטי פרויקט --- */
+.project-details-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.project-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.designer-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.designer-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--sand-color);
+}
+
+.designer-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.tags {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 40px;
+  color: #666;
+  font-size: 1rem;
+  background: none;
+  padding: 0;
+  border: none;
+}
+
+.tags span strong {
+  color: var(--sand-color);
+  margin-left: 5px;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.label-before, .label-after {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #777;
+}
+
+.chat-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.chat-btn {
+  background-color: #000;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.chat-btn:hover {
+  background-color: #333;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: fit-content;
+}
+
+.filters-container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.filters-container h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.sidebar select, .sidebar input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.add-project-btn {
+  background-color: var(--sand-color);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.add-project-btn:hover {
+  background-color: #bc8a5f;
+}
+
+.image-list {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.file-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.file-input {
+  border: 2px dashed #eee !important;
+  background: #fafafa;
+  cursor: pointer;
+  padding: 20px 10px !important;
+  text-align: center;
+}
+
+.owner-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.owner-actions button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background-color: #f0f0f0;
+  color: var(--text-main);
+}
+
+.edit-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.delete-btn {
+  background-color: #fff1f1;
+  color: #d9534f;
+}
+
+.delete-btn:hover {
+  background-color: #ffe1e1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0;
+}
+
+.page-btn {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid #e8e8e8;
+  background-color: white;
+  color: #4a4a4a;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--sand-color);
+  color: var(--sand-color);
+  background-color: #fdfcf9;
+}
+
+.page-btn.active {
+  background-color: var(--sand-color);
+  color: white;
+  border-color: var(--sand-color);
+}
+
+.page-btn:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 תמונות בשורה */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.img-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-img-card {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* ריבוע מושלם */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.edit-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* שומר על התמונה ממלאת את הריבוע */
+}
+
+/* שורה אחת לכפתורים */
+.img-controls {
+  display: flex;
+  justify-content: space-between; /* מרווח בין האיקס לצ'קבוקס */
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+}
+
+.del-img-btn-bottom {
+  background: #ffeded;
+  color: #d9534f;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.img-status-toggle-bottom {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: #4a4a4a;
+  cursor: pointer;
+}
+
+/* כפתור ה-X החדש - קטן ומעודן */
+.del-img-btn {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.4); /* שקוף */
+  color: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.del-img-btn:hover { background: rgba(0, 0, 0, 0.7); }
+
+/* עיצוב צ'קבוקס "לפני/אחרי" בתוך הגלריה */
+.img-status-toggle {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.primary-btn, .secondary-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.primary-btn { background-color: var(--sand-color); color: white; }
+.secondary-btn { background-color: #f0f0f0; color: #555; }
+
+/* עיצוב הלב בתוך הכרטיס */
+.heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-icon:hover {
+    transform: scale(1.1);
+    background: white;
+}
+.card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* מרווח קטן וקבוע */
+    margin: 10px 15px; /* שוליים כמו שאר הטקסט בכרטיס */
+}
+
+.view-btn {
+    flex: 3; /* הכפתור הגדול תופס 3 יחידות מקום */
+    padding: 8px;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.heart-btn-minimal {
+    flex: 1; /* הלב תופס יחידה אחת - יהיה קטן ומדויק */
+    padding: 8px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

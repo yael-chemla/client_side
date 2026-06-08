@@ -1,0 +1,65 @@
+/* auth.css */
+:root {
+  --sand-color: #d4a373;
+  --sand-hover: #bc8a5f;
+  --bg-soft: #fcfbf7;
+  --text-main: #4a4a4a;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-soft);
+  padding: 20px;
+}
+
+.auth-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card h2 {
+  text-align: center;
+  color: var(--text-main);
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.auth-card input, 
+.auth-card select, 
+.auth-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.auth-card button {
+  background-color: var(--sand-color);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.auth-card button:hover {
+  background-color: var(--sand-hover);
+}
+
+.auth-card p {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 20px;
+}
