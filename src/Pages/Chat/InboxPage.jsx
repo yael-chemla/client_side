@@ -23,29 +23,7 @@ export default function InboxPage() {
 
     if (loading) return <div>טוען הודעות...</div>;
 
-    // return (
-    //     <div className="inbox-container">
-    //         <h2>הודעות</h2>
-    //         {conversations.length === 0 ? (
-    //             <p>אין לך שיחות פעילות.</p>
-    //         ) : (
-    //             conversations.map((chat) => (
-    //                 <div 
-    //                     key={chat.conversation_id} 
-    //                     className="chat-item"
-    //                     onClick={() => navigate(`/chat/${chat.conversation_id}`)}
-    //                 >
-    //                     <img src={chat.other_user_image || "/default-avatar.png"} alt="avatar" />
-    //                     <div className="chat-info">
-    //                         <h4>{chat.other_user_name}</h4>
-    //                         <p>{chat.last_message || "אין הודעות עדיין..."}</p>
-    //                     </div>
-    //                 </div>
-    //             ))
-    //         )}
-    //     </div>
-    // );
-    // ב-InboxPage.jsx
+
     return (
         <div className="inbox-wrapper"> {/* שונה מ-inbox-container */}
             <div className="conversations-sidebar"> {/* שונה מ-conversations-list */}
@@ -61,14 +39,13 @@ export default function InboxPage() {
                         >
                             {/* הוספתי תמונה כי זה חלק מהעיצוב שרצית */}
                             <img
-                                src={conv.other_user_image
-                                    ? `http://localhost:3000${conv.other_user_image}`
-                                    : "/default-avatar.png"
-                                }
-                                alt={conv.other_user_name || "user"}
+                                src={conv.other_user_image || "/default-avatar.png"}
+                                alt={conv.other_user_name}
                                 className="conv-avatar"
-                                onError={(e) => { e.target.src = "/default-avatar.png"; }}
-                            />                            <div className="conv-details">
+                                onError={(e) => {
+                                    e.target.src = "/default-avatar.png";
+                                }}
+                            />                         <div className="conv-details">
                                 <p><strong>{conv.other_user_name}</strong></p>
                                 <p>{conv.last_message || "אין הודעות"}</p>
                             </div>

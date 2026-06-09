@@ -1,37 +1,52 @@
 .inbox-wrapper {
-    display: flex;
-    height: 80vh; /* גובה החלון */
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    max-width: 500px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 24px;
     overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-
+.conversations-sidebar {
+    width: 100%;
+    padding: 0;
+}
 
 .conv-item {
     display: flex;
     align-items: center;
-    padding: 15px;
+    gap: 15px;
+    padding: 18px;
+    border-bottom: 1px solid #f2f2f2;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
+    transition: all .2s;
 }
 
-.conv-item:hover { background: #ececec; }
+.conv-item:hover {
+    background: #fafafa;
+}
 
-.conv-item img {
-    width: 45px;
-    height: 45px;
+.conv-avatar {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin-left: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
-.conversations-sidebar {
-    width: 350px;
-    border-right: 1px solid #eee;
-    background: #ffffff;
-    padding: 20px;
-    
-    /* כאן התיקון הקריטי: */
-    height: 100%;        /* תופס את כל גובה ה-Wrapper */
-    overflow-y: auto;    /* מוסיף גלילה אנכית רק כשצריך */
+.conv-details {
+    flex: 1;
+}
+
+.conv-details strong {
+    display: block;
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.conv-details p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
 }

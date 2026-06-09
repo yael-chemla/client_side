@@ -211,6 +211,7 @@ export default function ChatWindow() {
 
     return (
         <div className="chat-window">
+ 
             <div className="messages-list">
                 {messages.map((msg) => (
                     <Message
@@ -227,7 +228,7 @@ export default function ChatWindow() {
                     />
                 ))}
             </div>
-            <form onSubmit={handleSend}>
+            <form className="chat-form" onSubmit={handleSend}>
                 <input
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
