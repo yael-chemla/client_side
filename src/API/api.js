@@ -1,5 +1,30 @@
 const API_BASE = "http://localhost:3000";
 
+// async function request(url, options = {}) {
+//     const token = localStorage.getItem("token");
+//     console.log("Sending Request to:", url, "With Token:", token); // <-- תוסיפי את זה
+//     const headers = {
+//         ...(options.isFormData ? {} : { "Content-Type": "application/json" }),
+//         ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+//         ...options.headers,
+//     };
+
+//     const { isFormData, ...fetchOptions } = options;
+
+//     const res = await fetch(`${API_BASE}${url}`, {
+//         ...fetchOptions,
+//         headers,
+//     });
+
+//     if (!res.ok) {
+//         const errorData = await res.json().catch(() => ({ message: "API Error" }));
+//         throw new Error(errorData.message || "API Error");
+//     }
+
+//     if (res.status === 204) return true;
+//     return res.json();
+// }
+
 async function request(url, options = {}) {
     const token = localStorage.getItem("token");
     const headers = {
@@ -15,13 +40,14 @@ async function request(url, options = {}) {
         headers,
     });
 
+    // קראנו את התשובה פעם אחת בלבד כדי למנוע שגיאות
+    const data = await res.json().catch(() => ({}));
+
     if (!res.ok) {
-        const errorData = await res.json().catch(() => ({ message: "API Error" }));
-        throw new Error(errorData.message || "API Error");
+        throw new Error(data.message || "API Error");
     }
 
-    if (res.status === 204) return true;
-    return res.json();
+    return data; 
 }
 
 export const api = {

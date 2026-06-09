@@ -1,0 +1,37 @@
+.inbox-wrapper {
+    display: flex;
+    height: 80vh; /* גובה החלון */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
+.conv-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.conv-item:hover { background: #ececec; }
+
+.conv-item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.conversations-sidebar {
+    width: 350px;
+    border-right: 1px solid #eee;
+    background: #ffffff;
+    padding: 20px;
+    
+    /* כאן התיקון הקריטי: */
+    height: 100%;        /* תופס את כל גובה ה-Wrapper */
+    overflow-y: auto;    /* מוסיף גלילה אנכית רק כשצריך */
+}

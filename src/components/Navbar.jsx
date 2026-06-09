@@ -19,7 +19,7 @@ export default function Navbar() {
           <>
             {/* כפתור הפרופיל החדש */}
             <Link to="/profile" className="nav-link-profile-action">הפרופיל שלי</Link>
-            
+
             {/* תצוגת שם ותמונה בלבד */}
             <div className="user-profile-display">
               {user?.profile_image && (
@@ -32,7 +32,7 @@ export default function Navbar() {
               )}
               <span>{user?.full_name}</span>
             </div>
-            
+
             <button onClick={handleLogout} className="nav-btn-logout">התנתקות</button>
           </>
         ) : (
@@ -53,8 +53,7 @@ export default function Navbar() {
         {isAuthenticated && (
           <>
             {user?.role === 'designer' && <Link to="/my-projects" className="nav-link">הפרויקטים שלי</Link>}
-            <Link to="/chat" className="nav-link">צ'אט</Link>
-            <Link to="/favorites" className="nav-link">מועדפים</Link>
+            <Link to="/inbox" className="nav-link">הודעות 📬</Link>            <Link to="/favorites" className="nav-link">מועדפים</Link>
           </>
         )}
         <Link to="/designers" className="nav-link">מעצבות</Link>

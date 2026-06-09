@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProjectById, deleteProject } from "../../API/projects";
 import { useAuth } from "../../Hooks/UserContext";
+import { createConversation } from "../../API/chat"; // תוודאי שזה הנתיב הנכון
 
 export default function ProjectDetailsPage() {
     const { id } = useParams();
@@ -34,7 +35,22 @@ export default function ProjectDetailsPage() {
     }, [id]);
 
     if (!project) return <div className="loading">טוען פרטי פרויקט...</div>;
+    const handleChat = async () => {
+        if (!isAuthenticated) {
+            navigate('/login');
+            return;
+        }
 
+        try {
+            // פתיחת/יצירת שיחה עם המעצב/ת של הפרויקט
+            const conversation = await createConversation(project.designer_id);
+            // ניווט לשיחה עם ה-ID שחזר
+            navigate(`/chat/${conversation.conversationId}`);
+        } catch (err) {
+            console.error("שגיאה בפתיחת שיחה:", err);
+            alert("לא ניתן היה לפתוח שיחה כרגע");
+        }
+    };
 
     return (
         <div className="project-details-container">
@@ -84,7 +100,7 @@ export default function ProjectDetailsPage() {
                 <div className="chat-container">
                     <button
                         className="chat-btn"
-                        onClick={() => isAuthenticated ? navigate('/chat') : navigate('/login')}
+                        onClick={handleChat}
                     >
                         {isAuthenticated ? "צ'אט עם המעצבת" : "התחבר כדי לשוחח עם המעצבת"}
                     </button>

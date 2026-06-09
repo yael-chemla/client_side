@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { createConversation } from "../../API/chat"; // 2. נוסיף את ה-API
+import { useNavigate } from "react-router-dom"; // 1. נוסיף את זה
 import { getDesigners } from "../../API/users"; // נצטרך לייצא את הפונקציה הזו מ-users.js
 import { Link } from "react-router-dom"; // תוסיפי את זה
 import "../../CSS/DesignersPage.css";
@@ -7,6 +9,7 @@ export default function DesignersPage() {
     const [designers, setDesigners] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // <-- השורה הזו חסרה לך!
 
     useEffect(() => {
         const fetchDesigners = async () => {
@@ -48,9 +51,28 @@ export default function DesignersPage() {
                                 <h3>{d.full_name}</h3>
                             </Link>
                             <p>📍 {d.city}</p>
-                            <a href={`/chat?designerId=${d.id}`} className="chat-btn">
+                            <button
+                                className="chat-btn"
+                                onClick={async () => {
+                                    try {
+                                        // נבטיח שה-ID הוא מספר לפני השליחה
+                                        const designerId = parseInt(d.id);
+                                        console.log("מנסה ליצור שיחה עם מעצבת ID:", designerId);
+
+                                        const response = await createConversation(designerId);
+
+                                        if (response && response.conversationId) {
+                                            console.log("מנווט ל-:", `/chat/${response.conversationId}`);
+                                            navigate(`/chat/${response.conversationId}`);
+                                        }
+                                    } catch (err) {
+                                        console.error("שגיאה ב-DesignersPage:", err);
+                                        alert("לא ניתן היה לפתוח שיחה.");
+                                    }
+                                }}
+                            >
                                 שלח הודעה
-                            </a>
+                            </button>
                         </div>
                     ))}
                 </div>
