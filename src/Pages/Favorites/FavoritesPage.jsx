@@ -12,22 +12,40 @@ export default function FavoritesPage() {
         setFavorites(data);
     };
 
+    // return (
+    //     <div className="project-details-container"> 
+    //         <h2>המועדפים שלי</h2>
+    //         <div className="project-grid">
+    //             {favorites.map(project => (
+    //                 <ProjectCard 
+    //                     key={project.id} 
+    //                     project={project} 
+    //                     isFavorite={true} // בעמוד הזה תמיד true
+    //                     onToggleFavorite={async (id) => {
+    //                         await removeFromFavorites(id);
+    //                         fetchFavorites(); // רענון הרשימה אחרי מחיקה
+    //                     }} 
+    //                 />
+    //             ))}
+    //         </div>
+    //     </div>
+    // );
     return (
-        <div className="project-details-container"> 
-            <h2>המועדפים שלי</h2>
-            <div className="project-grid">
-                {favorites.map(project => (
-                    <ProjectCard 
-                        key={project.id} 
-                        project={project} 
-                        isFavorite={true} // בעמוד הזה תמיד true
-                        onToggleFavorite={async (id) => {
-                            await removeFromFavorites(id);
-                            fetchFavorites(); // רענון הרשימה אחרי מחיקה
-                        }} 
-                    />
-                ))}
-            </div>
+    <div className="favorites-page">
+        <h2>המועדפים שלי</h2>
+        <div className="project-grid">
+            {favorites.map(project => (
+                <ProjectCard 
+                    key={project.id} 
+                    project={project} 
+                    isFavorite={true}
+                    onToggleFavorite={async (id) => {
+                        await removeFromFavorites(id);
+                        fetchFavorites();
+                    }} 
+                />
+            ))}
         </div>
-    );
+    </div>
+);
 }

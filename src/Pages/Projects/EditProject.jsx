@@ -68,38 +68,86 @@ export default function EditProject() {
         }
     };
 
+    const handleRoomTypeChange = async (imgId, newRoomType) => {
+        try {
+            const img = images.find(i => i.id === imgId);
+            await updateImage(imgId, img.is_before, newRoomType);
+            setImages(images.map(i => i.id === imgId ? { ...i, room_type: newRoomType } : i));
+        } catch (err) {
+            alert("שגיאה בעדכון סוג החדר: " + err.message);
+        }
+    };
+
     if (loading) return <div className="auth-container">טוען...</div>;
 
+    // return (
+    //     <div className="auth-container">
+    //         <form onSubmit={handleSubmit} className="auth-card">
+    //             <h2>עריכת פרויקט</h2>
+
+    //             <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="שם הפרויקט" />
+    //             <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="תיאור" />
+
+    //             <select value={formData.style} onChange={(e) => setFormData({ ...formData, style: e.target.value })}>
+    //                 {STYLES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+    //             </select>
+
+    //             <select value={formData.room_type} onChange={(e) => setFormData({ ...formData, room_type: e.target.value })}>
+    //                 {ROOM_TYPES.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+    //             </select>
+
+    //             {/* כאן הקומפוננטה המפוצלת נכנסת */}
+    //             <EditProjectImages
+    //                 images={images}
+    //                 onDelete={handleDeleteImage}
+    //                 onToggleBefore={handleToggleBefore}
+    //                 onRoomTypeChange={handleRoomTypeChange}
+    //                 projectRoomType={formData.room_type}
+    //             />
+
+    //             <div className="form-actions">
+    //                 <button type="button" className="secondary-btn" onClick={() => navigate(`/projects/add-images/${id}`)}>
+    //                     הוסף תמונות חדשות
+    //                 </button>
+    //                 <button type="submit" className="primary-btn">שמור שינויים</button>
+    //             </div>
+    //         </form>
+    //     </div>
+    // );
     return (
-        <div className="auth-container">
-            <form onSubmit={handleSubmit} className="auth-card">
-                <h2>עריכת פרויקט</h2>
+    <div className="edit-project-page">
+        <form onSubmit={handleSubmit} className="edit-project-form">
+            <h2>עריכת פרויקט</h2>
 
-                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="שם הפרויקט" />
-                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="תיאור" />
+            <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="שם הפרויקט" />
+            <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="תיאור" />
 
-                <select value={formData.style} onChange={(e) => setFormData({ ...formData, style: e.target.value })}>
-                    {STYLES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-                </select>
+            <select value={formData.style} onChange={(e) => setFormData({ ...formData, style: e.target.value })}>
+                {STYLES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+            </select>
 
-                <select value={formData.room_type} onChange={(e) => setFormData({ ...formData, room_type: e.target.value })}>
-                    {ROOM_TYPES.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-                </select>
+            <select value={formData.room_type} onChange={(e) => setFormData({ ...formData, room_type: e.target.value })}>
+                {ROOM_TYPES.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+            </select>
+        </form>
 
-                {/* כאן הקומפוננטה המפוצלת נכנסת */}
-                <EditProjectImages
-                    images={images}
-                    onDelete={handleDeleteImage}
-                    onToggleBefore={handleToggleBefore}
-                />
-
-                <div className="form-actions">
-                    <button type="button" className="secondary-btn" onClick={() => navigate(`/projects/add-images/${id}`)}>
-                        הוסף תמונות חדשות
-                    </button>
-                    <button type="submit" className="primary-btn">שמור שינויים</button>
-                </div>
-            </form>
+        {/* התמונות — מחוץ לפורם, רוחב מלא */}
+        <div className="edit-images-wrapper">
+            <EditProjectImages
+                images={images}
+                onDelete={handleDeleteImage}
+                onToggleBefore={handleToggleBefore}
+                onRoomTypeChange={handleRoomTypeChange}
+                projectRoomType={formData.room_type}
+            />
         </div>
-    );
+
+        <div className="edit-form-actions">
+            <button type="button" className="secondary-btn" onClick={() => navigate(`/projects/add-images/${id}`)}>
+                הוסף תמונות חדשות
+            </button>
+            <button type="button" className="primary-btn" onClick={handleSubmit}>שמור שינויים</button>
+        </div>
+    </div>
+);
 }

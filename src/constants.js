@@ -1,13 +1,27 @@
 export const ROOM_TYPES = [
-    { value: "Living Room", label: "סלון" },
-    { value: "Kitchen", label: "מטבח" },
-    { value: "Bedroom", label: "חדר שינה" },
-    { value: "Bathroom", label: "חדר רחצה" }
+    { value: "דירה", label: "דירה" },
+    { value: "סלון", label: "סלון" },
+    { value: "מטבח", label: "מטבח" },
+    { value: "חדר שינה", label: "חדר שינה" },
+    { value: "חדר רחצה", label: "חדר רחצה" },
+    { value: "אחר", label: "אחר" }
 ];
 
 export const STYLES = [
-    { value: "Modern", label: "מודרני" },
-    { value: "Classic", label: "קלאסי" },
-    { value: "Industrial", label: "תעשייתי" },
-    { value: "Boho", label: "בוהו-שיק" }
+    { value: "מודרני", label: "מודרני" },
+    { value: "קלאסי", label: "קלאסי" },
+    { value: "תעשייתי", label: "תעשייתי" },
+    { value: "בוהו-שיק", label: "בוהו-שיק" },
+    { value: "אחר", label: "אחר" }
+
+];
+
+// ✅ חדש — סוגי חדרים בתוך דירה
+export const APARTMENT_ROOM_TYPES = [
+    { value: "סלון", label: "סלון" },
+    { value: "מטבח", label: "מטבח" },
+    { value: "חדר שינה", label: "חדר שינה" },
+    { value: "חדר רחצה", label: "חדר רחצה" },
+    { value: "אחר", label: "אחר" }
+
 ];

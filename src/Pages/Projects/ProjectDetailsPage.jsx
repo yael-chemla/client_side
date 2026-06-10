@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getProjectById, deleteProject } from "../../API/projects";
 import { useAuth } from "../../Hooks/UserContext";
 import { createConversation } from "../../API/chat"; // תוודאי שזה הנתיב הנכון
-
+import { APARTMENT_ROOM_TYPES } from "../../constants";
 export default function ProjectDetailsPage() {
     const { id } = useParams();
     const [project, setProject] = useState(null);
@@ -29,6 +29,8 @@ export default function ProjectDetailsPage() {
         // שליפת הפרויקט מהשרת (שימי לב: הפונקציה הזו צריכה להחזיר את כל המידע)
         const loadProject = async () => {
             const data = await getProjectById(id);
+            console.log(data.images); // <-- להוסיף כאן
+
             setProject(data);
         };
         loadProject();
@@ -51,6 +53,9 @@ export default function ProjectDetailsPage() {
             alert("לא ניתן היה לפתוח שיחה כרגע");
         }
     };
+    const beforeImages = project.images?.filter(img => img.is_before);
+    const afterImages = project.images?.filter(img => !img.is_before);
+    const groupedRooms = {};
 
     return (
         <div className="project-details-container">
@@ -82,14 +87,43 @@ export default function ProjectDetailsPage() {
 
             {/* גלריית תמונות */}
             <section className="project-gallery">
-                {project.images && project.images.map((img, i) => (
-                    <div key={i} className="image-wrapper">
-                        <img src={`http://localhost:3000${img.image_url}`} alt={project.title} />
-                        <div className={img.is_before ? "label-before" : "label-after"}>
-                            {img.is_before ? "לפני השיפוץ" : "אחרי השיפוץ"}
+                {beforeImages.length > 0 && (
+                    <div className="gallery-section">
+                        <h2 className="gallery-section-title">לפני השיפוץ</h2>
+                        <div className="images-row">
+                            {beforeImages.map(img => (
+                                <div key={img.id} className="image-wrapper">
+                                    <img
+                                        src={`http://localhost:3000${img.image_url}`}
+                                        alt={img.room_type || project.title}
+                                    />
+                                    {img.room_type && (
+                                        <span className="image-room-label">{img.room_type}</span>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
-                ))}
+                )}
+
+                {afterImages.length > 0 && (
+                    <div className="gallery-section">
+                        <h2 className="gallery-section-title">אחרי השיפוץ</h2>
+                        <div className="images-row">
+                            {afterImages.map(img => (
+                                <div key={img.id} className="image-wrapper">
+                                    <img
+                                        src={`http://localhost:3000${img.image_url}`}
+                                        alt={img.room_type || project.title}
+                                    />
+                                    {img.room_type && (
+                                        <span className="image-room-label">{img.room_type}</span>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </section>
 
             {/* תיאור וכפתור צ'אט (מופיע פעם אחת!) */}
@@ -97,14 +131,16 @@ export default function ProjectDetailsPage() {
                 <h3>על הפרויקט</h3>
                 <p>{project.description}</p>
 
-                <div className="chat-container">
-                    <button
-                        className="chat-btn"
-                        onClick={handleChat}
-                    >
-                        {isAuthenticated ? "צ'אט עם המעצבת" : "התחבר כדי לשוחח עם המעצבת"}
-                    </button>
-                </div>
+                {!isOwner && (
+                    <div className="chat-container">
+                        <button
+                            className="chat-btn"
+                            onClick={handleChat}
+                        >
+                            {isAuthenticated ? "צ'אט עם המעצבת" : "התחבר כדי לשוחח עם המעצבת"}
+                        </button>
+                    </div>
+                )}
             </article>
         </div>
     );

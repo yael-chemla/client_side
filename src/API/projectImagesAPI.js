@@ -11,6 +11,12 @@ export const deleteImage = async (imageId) => {
 };
 
 // עדכון תמונה (שינוי סטטוס)
-export const updateImage = async (id, isBefore) => {
-    return await api.put(`/project-images/${id}`, { is_before: isBefore });
+// export const updateImage = async (id, isBefore) => {
+//     return await api.put(`/project-images/${id}`, { is_before: isBefore });
+// };
+export const updateImage = async (id, isBefore, roomType) => {
+    return await api.put(`/project-images/${id}`, { 
+        is_before: isBefore,
+        room_type: roomType
+    });
 };
