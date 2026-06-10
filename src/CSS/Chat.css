@@ -60,7 +60,7 @@
     background: white;
     color: #333;
     border-bottom-left-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* כפתורי עריכה ומחיקה */
@@ -87,7 +87,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
 /* אזור כתיבת הודעה */
@@ -149,29 +149,59 @@
     border-radius: 10px;
     cursor: pointer;
 }
-.chat-header{
-    height:80px;
-    background:white;
-    border-bottom:1px solid #eee;
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:0 20px;
+
+.chat-header {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
 }
 
-.chat-avatar{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    object-fit:cover;
+.chat-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.chat-header h3{
-    margin:0;
-    font-size:18px;
+.chat-header h3 {
+    margin: 0;
+    font-size: 18px;
 }
 
-.chat-header span{
-    color:#777;
-    font-size:13px;
+.chat-header span {
+    color: #777;
+    font-size: 13px;
+}
+
+.conv-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.delete-conv-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding: 4px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.conv-item:hover .delete-conv-btn {
+    opacity: 1;
+}
+
+.delete-conv-btn:hover {
+    background-color: #ffe0e0;
 }

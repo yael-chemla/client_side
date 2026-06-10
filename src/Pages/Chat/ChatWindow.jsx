@@ -143,7 +143,7 @@
 
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { getMessages, sendMessage } from "../../API/chat";
+import { getMessages, sendMessage, deleteMessage } from "../../API/chat";
 import { useAuth } from "../../Hooks/UserContext";
 import { SocketContext } from "../../Hooks/SocketContext";
 import "../../CSS/chat.css"
@@ -187,12 +187,21 @@ export default function ChatWindow() {
                 prev.map((msg) => (msg.id === updatedMsg.id ? updatedMsg : msg))
             );
         };
+
+        // ✅ האזנה חדשה למחיקה בזמן אמת
+        const handleMessageDeleted = ({ messageId }) => {
+            setMessages((prev) => prev.filter((msg) => msg.id !== messageId));
+        };
+
         socket.on("receive_message", handleReceiveMessage);
         socket.on("message_updated", handleMessageUpdated); // <-- כאן
+        socket.on("message_deleted", handleMessageDeleted); // ✅
 
         return () => {
             socket.off("receive_message", handleReceiveMessage);
             socket.off("message_updated", handleMessageUpdated); // <-- וגם כאן
+            socket.off("message_deleted", handleMessageDeleted); // ✅
+
         };
     }, [socket, conversationId]);
 
@@ -211,7 +220,7 @@ export default function ChatWindow() {
 
     return (
         <div className="chat-window">
- 
+
             <div className="messages-list">
                 {messages.map((msg) => (
                     <Message
@@ -220,7 +229,7 @@ export default function ChatWindow() {
                         user={user}
                         onDelete={async (id) => {
                             await deleteMessage(id);
-                            setMessages(messages.filter(m => m.id !== id));
+                            // setMessages(messages.filter(m => m.id !== id));
                         }}
                         onEdit={(updatedMsg) => {
                             setMessages(messages.map(m => m.id === updatedMsg.id ? updatedMsg : m));

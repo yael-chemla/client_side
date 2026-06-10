@@ -22,3 +22,7 @@ export const editMessage = (messageId, message_text) =>
 
 export const deleteMessage = (messageId) => 
     api.delete(`/messages/${messageId}`);
+
+// ✅ חדש — מחיקת שיחה שלמה
+export const deleteConversation = (conversationId) =>
+    api.delete(`/conversations/${conversationId}`);
