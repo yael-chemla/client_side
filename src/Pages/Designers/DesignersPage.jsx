@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"; // 1. נוסיף את זה
 import { getDesigners } from "../../API/users"; // נצטרך לייצא את הפונקציה הזו מ-users.js
 import { Link } from "react-router-dom"; // תוסיפי את זה
 import "../../CSS/DesignersPage.css";
+import Pagination from "../Projects/components/Pagination";
 
 
 
@@ -99,12 +100,16 @@ export default function DesignersPage() {
     const [designers, setDesigners] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [metadata, setMetadata] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const fetchDesigners = async () => {
+            setLoading(true);
             try {
-                const data = await getDesigners();
-                setDesigners(data);
+                const data = await getDesigners(currentPage);
+                setDesigners(data.designers);
+                setMetadata(data.metadata);
             } catch (err) {
                 setError("משהו השתבש בטעינת המעצבות.");
             } finally {
@@ -112,7 +117,7 @@ export default function DesignersPage() {
             }
         };
         fetchDesigners();
-    }, []);
+    }, [currentPage]);
 
     if (loading) return <div className="loading">טוען מעצבות...</div>;
     if (error) return <div className="error">{error}</div>;
@@ -129,6 +134,10 @@ export default function DesignersPage() {
                     ))}
                 </div>
             )}
+            <Pagination
+                metadata={metadata}
+                onPageChange={setCurrentPage}
+            />
         </div>
     );
 }

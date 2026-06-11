@@ -10,4 +10,4 @@ export const updateMyProfile = (formData) => api.put("/users/profile", formData,
 export const getDesignerProfile = (id) => api.get(`/users/designer/${id}`);
 
 // שליפת רשימת כל המעצבות
-export const getDesigners = () => api.get("/users/designers");
+export const getDesigners = (page = 1) => api.get(`/users/designers?page=${page}`);
