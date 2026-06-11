@@ -1,8 +1,8 @@
 import ProjectCard from "./ProjectCard";
 import { useState, useEffect } from "react";
-import { getProjects } from "../../../API/projects"; 
+import { getProjects } from "../../../API/projects";
 
-export default function ProjectList({ projects, favorites, onToggleFavorite }) {
+export default function ProjectList({ projects, favorites, onToggleFavorite , showFavorite = true}) {
     if (!projects || projects.length === 0) return <p>לא נמצאו פרויקטים.</p>;
 
     return (
@@ -13,6 +13,7 @@ export default function ProjectList({ projects, favorites, onToggleFavorite }) {
                     project={p}
                     isFavorite={favorites.includes(p.id)} // האם הפרויקט הזה במועדפים?
                     onToggleFavorite={onToggleFavorite}
+                    showFavorite={showFavorite}
                 />
             ))}
         </div>

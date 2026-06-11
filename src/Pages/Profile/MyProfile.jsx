@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"; // ודאי שזה פ
 import { getMyProfile, updateMyProfile, getDesignerProfile } from "../../API/users";
 import { useAuth } from "../../Hooks/UserContext"; // <--- השורה הזו חסרה לך!
 import "../../CSS/Profile.css";
+import { API_BASE_URL } from "../../constants";
+import { createConversation } from "../../API/chat";
 
 export default function MyProfile() {
     const { id } = useParams(); // תופסים את ה-id מה-URL אם קיים
@@ -57,6 +59,17 @@ export default function MyProfile() {
         } catch (err) { alert("שגיאה בעדכון: " + err.message); }
     };
 
+    const handleChat = async () => {
+        try {
+            const response = await createConversation(profile.id);
+            if (response?.conversationId) {
+                navigate(`/chat/${response.conversationId}`);
+            }
+        } catch (err) {
+            alert("לא ניתן היה לפתוח שיחה.");
+        }
+    };
+
     if (loading || !profile) return <div className="loading">טוען פרופיל...</div>;
 
     return (
@@ -64,7 +77,7 @@ export default function MyProfile() {
             <h2>{isOwnProfile ? "הפרופיל שלי" : `הפרופיל של ${profile.full_name}`}</h2>
 
             <img
-                src={profile.profile_image ? (profile.profile_image.startsWith("http") ? profile.profile_image : `http://localhost:3000${profile.profile_image}`) : "/default-avatar.png"}
+                src={profile.profile_image ? (profile.profile_image.startsWith("http") ? profile.profile_image : `${API_BASE_URL}${profile.profile_image}`) : "/default-avatar.png"}
                 alt="profile" className="profile-big-avatar"
             />
 
@@ -102,8 +115,9 @@ export default function MyProfile() {
                 <div className="profile-view">
                     <p><strong>עיר:</strong> {profile.city}</p>
                     <p><strong>אודות:</strong> {profile.bio}</p>
-                    <a href={`/chat?designerId=${profile.id}`} className="chat-btn">שלח הודעה למעצבת</a>
-                </div>
+                    <button className="chat-btn" onClick={handleChat}>
+                        שלח הודעה למעצבת
+                    </button>                </div>
             )}
         </div>
     );

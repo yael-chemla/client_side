@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { uploadProjectImage } from "../../API/projectImagesAPI";
-import { getProjectById } from "../../API/projects";
-import { APARTMENT_ROOM_TYPES } from "../../constants";
+import { uploadProjectImage } from "../../../API/projectImagesAPI";
+import { getProjectById } from "../../../API/projects";
+import { APARTMENT_ROOM_TYPES } from "../../../constants";
 
 export default function AddImages() {
     const { id } = useParams();

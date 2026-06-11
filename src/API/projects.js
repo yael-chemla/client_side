@@ -30,4 +30,7 @@ export const deleteProject = async (id) => {
 
 // שליפת הפרויקטים של המעצבת המחוברת
 export const getMyProjects = () => api.get("/projects/my-projects");
-
+//פרויטים לפי שם מעצבת
+export const getProjectsByDesigner = async (designerId) => {
+    return await api.get(`/projects?designer_id=${designerId}`);
+};

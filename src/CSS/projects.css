@@ -230,7 +230,10 @@
   font-weight: 600;
   transition: 0.3s;
 }
-
+.designer-name {
+  text-decoration: none;
+  color: var(--text-main);
+}
 .add-project-btn:hover {
   background-color: #bc8a5f;
 }

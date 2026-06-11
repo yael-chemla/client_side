@@ -15,9 +15,9 @@ import MyProfile from './Pages/Profile/MyProfile';
 import FavoritesPage from './Pages/Favorites/FavoritesPage';
 import InboxPage from './Pages/Chat/InboxPage';
 import ChatWindow from './Pages/Chat/ChatWindow';
-import AddProject from './Pages/Projects/AddProject';
-import AddImages from './Pages/Projects/AddImages';
-import EditProject from './Pages/Projects/EditProject'; // תוסיפי את זה למעלה
+import AddProject from './Pages/Projects/components/AddProject';
+import AddImages from './Pages/Projects/components/AddImages';
+import EditProject from './Pages/Projects/components/EditProject'; // תוסיפי את זה למעלה
 import MyProjectsPage from './Pages/Projects/MyProjectsPage';
 
 function App() {

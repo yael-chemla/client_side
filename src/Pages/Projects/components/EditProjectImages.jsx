@@ -41,7 +41,8 @@
 //         </div>
 //     );
 // }
-import { APARTMENT_ROOM_TYPES } from "../../constants";
+import { APARTMENT_ROOM_TYPES } from "../../../constants";
+import { API_BASE_URL } from "../../../constants";
 
 export default function EditProjectImages({ images, onDelete, onToggleBefore, projectRoomType, onRoomTypeChange }) {
     if (!images || images.length === 0) return <p className="no-images-msg">אין תמונות להצגה</p>;
@@ -53,7 +54,7 @@ export default function EditProjectImages({ images, onDelete, onToggleBefore, pr
     const renderImageCard = (img) => (
         <div key={img.id} className="edit-image-card">
             <div className="edit-image-photo">
-                <img src={`http://localhost:3000${img.image_url}`} alt="project" />
+                <img src={`${API_BASE_URL}${img.image_url}`} alt="project" />
 
                 {/* X מחיקה בפינה */}
                 <button

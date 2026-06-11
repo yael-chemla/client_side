@@ -5,17 +5,25 @@ import ProjectList from "./components/ProjectList";
 import ProjectFilters from "./components/ProjectFilters";
 import Pagination from "./components/Pagination";
 import { useAuth } from "../../Hooks/UserContext";
-import { useNavigate } from "react-router-dom"; 
-import '../../CSS/projects.css'; 
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import '../../CSS/projects.css';
 
 
 
 export default function ProjectsPage() {
+    const [searchParams] = useSearchParams(); // קוראת את ה-URL
     const [projects, setProjects] = useState([]);
-    const [filters, setFilters] = useState({ room_type: "", style: "", designer_name: "", page: 1 });
+    // const [filters, setFilters] = useState({ room_type: "", style: "", designer_name: "", page: 1 });
     const [metadata, setMetadata] = useState({});
-    const [favorites, setFavorites] = useState([]); 
-
+    const [favorites, setFavorites] = useState([]);
+    const [filters, setFilters] = useState({
+        room_type: "",
+        style: "",
+        designer_name: "",
+        designer_id: searchParams.get("designer_id") || "", // ← שולפת מה-URL
+        page: 1
+    });
     const { user, isAuthenticated } = useAuth();
     const navigate = useNavigate();
 

@@ -1,6 +1,7 @@
 import { useAuth } from "../Hooks/UserContext";
 import { Link, useNavigate } from 'react-router-dom';
 import "../CSS/Navbar.css";
+import { API_BASE_URL } from "../constants";
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -24,7 +25,7 @@ export default function Navbar() {
             <div className="user-profile-display">
               {user?.profile_image && (
                 <img
-                  src={user.profile_image.startsWith('http') ? user.profile_image : `http://localhost:3000${user.profile_image}`}
+                  src={user.profile_image.startsWith('http') ? user.profile_image : `${API_BASE_URL}${user.profile_image}`}
                   alt="profile"
                   className="nav-avatar"
                   onError={(e) => { e.target.src = "/default-avatar.png"; }}

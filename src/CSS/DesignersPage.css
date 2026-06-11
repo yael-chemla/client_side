@@ -54,6 +54,7 @@
 
 .chat-btn:hover { background-color: #555; }
 
+
 .designer-img {
   width: 120px;
   height: 120px;
@@ -61,4 +62,113 @@
   object-fit: cover;
   border: 3px solid #f4f4f4;
   margin-bottom: 15px;
+}
+.designers-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.designers-container h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.designers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.designer-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.designer-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.designer-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.25rem;
+}
+
+.designer-card p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+/* 
+.chat-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.chat-btn:hover { background-color: #555; } */
+
+
+.designer-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f4f4f4;
+  margin-bottom: 15px;
+}
+/* .projects-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+} */
+
+/* .projects-btn:hover { background-color: #555; }
+
+.projects-btn:hover { background-color: #555; } */
+.chat-btn, .projects-btn {
+  background-color: white;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid #bc8a5f;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  text-decoration: none;
+}
+
+.chat-btn:hover, .projects-btn:hover {
+  background-color: #bc8a5f;
+  color: white;
+}
+
+.designer-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.designer-card a {
+  color: inherit;
+  /* text-decoration: none; */
 }

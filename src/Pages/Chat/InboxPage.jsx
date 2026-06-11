@@ -4,6 +4,7 @@ import { getInbox, deleteConversation } from "../../API/chat"; // נשתמש ב-
 import "../../CSS/InboxPage.css"; // כאן הוספנו את הקישור ל-CSS
 import { SocketContext } from "../../Hooks/SocketContext";
 import { useAuth } from "../../Hooks/UserContext";
+import { API_BASE_URL } from "../../constants";
 
 export default function InboxPage() {
     const [conversations, setConversations] = useState([]);
@@ -16,7 +17,7 @@ export default function InboxPage() {
     const getImageUrl = (path) => {
         if (!path) return "/default-avatar.png";
         if (path.startsWith("http")) return path; // כבר URL מלא
-        return `http://localhost:3000/${path.replace(/^\//, "")}`;
+        return `${API_BASE_URL}/${path.replace(/^\//, "")}`;
     };
 
     useEffect(() => {

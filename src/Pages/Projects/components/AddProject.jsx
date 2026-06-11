@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createProject } from "../../API/projects";
-import { ROOM_TYPES, STYLES } from "../../constants"; // ודאי שהנתיב נכון
+import { createProject } from "../../../API/projects";
+import { ROOM_TYPES, STYLES } from "../../../constants"; 
 
 export default function AddProject() {
     const navigate = useNavigate();

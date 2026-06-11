@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { addToFavorites, removeFromFavorites } from "../../../API/favoritesApi";
 import "../../../CSS/projects.css"
+import { API_BASE_URL } from "../../../constants";
 
-export default function ProjectCard({ project, isFavorite, onToggleFavorite }) {
+
+export default function ProjectCard({ project, isFavorite, onToggleFavorite, showFavorite = true }) {
   const navigate = useNavigate();
-  
-  const imageUrl = project.images?.length > 0 
-    ? `http://localhost:3000${project.images[0].image_url}` 
+
+  const imageUrl = project.images?.length > 0
+    ? `${API_BASE_URL}${project.images[0].image_url}`
     : "/placeholder.jpg";
 
   const handleHeartClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     onToggleFavorite(project.id, isFavorite);
   };
 
@@ -20,15 +22,17 @@ export default function ProjectCard({ project, isFavorite, onToggleFavorite }) {
       <h3>{project.title}</h3>
       <p>חדר: {project.room_type}</p>
       <p>סגנון: {project.style}</p>
-      
+
       {/* כאן האיקון מופיע כחלק מהכרטיס בצורה נקייה */}
       <div className="card-actions">
         <button className="view-btn" onClick={() => navigate(`/projects/${project.id}`)}>
           צפה בפרויקט
         </button>
-        <button className="heart-btn-minimal" onClick={handleHeartClick}>
-          {isFavorite ? "❤️" : "🤍"}
-        </button>
+        {showFavorite && (
+          <button className="heart-btn-minimal" onClick={handleHeartClick}>
+            {isFavorite ? "❤️" : "🤍"}
+          </button>
+        )}
       </div>
     </div>
   );
