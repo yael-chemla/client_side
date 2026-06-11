@@ -80,40 +80,6 @@ export default function EditProject() {
 
     if (loading) return <div className="auth-container">טוען...</div>;
 
-    // return (
-    //     <div className="auth-container">
-    //         <form onSubmit={handleSubmit} className="auth-card">
-    //             <h2>עריכת פרויקט</h2>
-
-    //             <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="שם הפרויקט" />
-    //             <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="תיאור" />
-
-    //             <select value={formData.style} onChange={(e) => setFormData({ ...formData, style: e.target.value })}>
-    //                 {STYLES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
-    //             </select>
-
-    //             <select value={formData.room_type} onChange={(e) => setFormData({ ...formData, room_type: e.target.value })}>
-    //                 {ROOM_TYPES.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-    //             </select>
-
-    //             {/* כאן הקומפוננטה המפוצלת נכנסת */}
-    //             <EditProjectImages
-    //                 images={images}
-    //                 onDelete={handleDeleteImage}
-    //                 onToggleBefore={handleToggleBefore}
-    //                 onRoomTypeChange={handleRoomTypeChange}
-    //                 projectRoomType={formData.room_type}
-    //             />
-
-    //             <div className="form-actions">
-    //                 <button type="button" className="secondary-btn" onClick={() => navigate(`/projects/add-images/${id}`)}>
-    //                     הוסף תמונות חדשות
-    //                 </button>
-    //                 <button type="submit" className="primary-btn">שמור שינויים</button>
-    //             </div>
-    //         </form>
-    //     </div>
-    // );
     return (
     <div className="edit-project-page">
         <form onSubmit={handleSubmit} className="edit-project-form">

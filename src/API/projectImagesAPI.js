@@ -10,10 +10,7 @@ export const deleteImage = async (imageId) => {
     return await api.delete(`/project-images/${imageId}`);
 };
 
-// עדכון תמונה (שינוי סטטוס)
-// export const updateImage = async (id, isBefore) => {
-//     return await api.put(`/project-images/${id}`, { is_before: isBefore });
-// };
+// עדכון תמונה (שינוי סטטוס-סוג חדר)
 export const updateImage = async (id, isBefore, roomType) => {
     return await api.put(`/project-images/${id}`, { 
         is_before: isBefore,
