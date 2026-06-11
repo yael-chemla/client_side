@@ -63,7 +63,7 @@ export default function MyProfile() {
         try {
             const response = await createConversation(profile.id);
             if (response?.conversationId) {
-                navigate(`/chat/${response.conversationId}`);
+                navigate(`/inbox/${response.conversationId}`);
             }
         } catch (err) {
             alert("לא ניתן היה לפתוח שיחה.");

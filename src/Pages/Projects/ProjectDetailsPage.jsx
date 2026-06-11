@@ -192,7 +192,7 @@ export default function ProjectDetailsPage() {
         }
         try {
             const conversation = await createConversation(project.designer_id);
-            navigate(`/chat/${conversation.conversationId}`);
+            navigate(`/inbox/${conversation.conversationId}`);  // ← תיקון כאן
         } catch (err) {
             alert("לא ניתן היה לפתוח שיחה כרגע");
         }

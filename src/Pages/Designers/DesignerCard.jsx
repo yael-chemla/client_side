@@ -10,7 +10,7 @@ export default function DesignerCard({ designer }) {
         try {
             const response = await createConversation(parseInt(d.id));
             if (response?.conversationId) {
-                navigate(`/chat/${response.conversationId}`);
+                navigate(`/inbox/${response.conversationId}`);;
             }
         } catch (err) {
             alert("לא ניתן היה לפתוח שיחה.");

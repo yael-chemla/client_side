@@ -1,4 +1,4 @@
-.chat-window {
+/* .chat-window {
     display: flex;
     flex-direction: column;
     height: 85vh;
@@ -8,7 +8,7 @@
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-}
+} */
 
 .messages-list {
     flex: 1;
@@ -204,4 +204,146 @@
 
 .delete-conv-btn:hover {
     background-color: #ffe0e0;
+}
+
+.chat-page {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: calc(100vh - 70px);
+    width: 100%;
+    margin: 0;
+    background: white;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.conversations-sidebar {
+    border-left: 1px solid #eee;
+    overflow-y: auto;
+    background: #fafafa;
+    padding: 20px 0;
+}
+
+.conversations-sidebar h2 {
+    padding: 0 20px 15px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #eee;
+    margin: 0 0 10px;
+}
+
+.conv-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 0;
+}
+
+.conv-item:hover {
+    background: #f0f0f0;
+}
+
+.conv-item.active {
+    background: #f5ede4;
+    border-right: 3px solid #bc8a5f;
+}
+
+.conv-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.conv-details {
+    flex: 1;
+    overflow: hidden;
+}
+
+.conv-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 3px;
+    color: #333;
+}
+
+.conv-last-msg {
+    font-size: 0.82rem;
+    color: #999;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-main {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.no-chat-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f7f8fc;
+}
+
+/* רספונסיבי */
+@media (max-width: 768px) {
+    .chat-page {
+        grid-template-columns: 1fr;
+        height: calc(100vh - 70px);
+    }
+
+    .conversations-sidebar {
+        display: none;
+    }
+
+    .conversations-sidebar.show {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        height: 100vh;
+        z-index: 100;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    }
+}
+.chat-header {
+    height: 70px;
+    background: #f7f8fc;
+    border-bottom: 2px solid #bc8a5f;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.chat-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #bc8a5f;
 }

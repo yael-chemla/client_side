@@ -13,13 +13,13 @@ import DesignersPage from './Pages/Designers/DesignersPage';
 import ProjectDetailsPage from './Pages/Projects/ProjectDetailsPage';
 import MyProfile from './Pages/Profile/MyProfile';
 import FavoritesPage from './Pages/Favorites/FavoritesPage';
-import InboxPage from './Pages/Chat/InboxPage';
-import ChatWindow from './Pages/Chat/ChatWindow';
+// import InboxPage from './Pages/Chat/components/InboxPage';
+import ChatWindow from './Pages/Chat/components/ChatWindow';
 import AddProject from './Pages/Projects/components/AddProject';
 import AddImages from './Pages/Projects/components/AddImages';
 import EditProject from './Pages/Projects/components/EditProject'; // תוסיפי את זה למעלה
 import MyProjectsPage from './Pages/Projects/MyProjectsPage';
-
+import ChatPage from './Pages/Chat/ChatPage'
 function App() {
   return (
     <UserProvider>
@@ -45,8 +45,10 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<MyProfile />} />
                 <Route path="/designer/:id" element={<MyProfile />} />              <Route path="/favorites" element={<FavoritesPage />} />
-                <Route path="/inbox" element={<InboxPage />} />
-                <Route path="/chat/:conversationId" element={<ChatWindow />} />
+                {/* <Route path="/inbox" element={<InboxPage />} />
+                <Route path="/chat/:conversationId" element={<ChatWindow />} /> */}
+                <Route path="/inbox" element={<ChatPage />} />
+                <Route path="/inbox/:conversationId" element={<ChatPage />} />
               </Route>
             </Routes>
           </div>
