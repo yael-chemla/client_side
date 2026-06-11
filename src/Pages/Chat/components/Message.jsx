@@ -6,9 +6,14 @@ export default function Message({ msg, user, onDelete, onEdit }) {
     const [editText, setEditText] = useState(msg.message_text);
 
     const handleEdit = async () => {
-        const updated = await editMessage(msg.id, editText);
-        onEdit(updated);
-        setIsEditing(false);
+        try {
+            const updated = await editMessage(msg.id, editText);
+            onEdit(updated);
+            setIsEditing(false);
+        } catch (err) {
+            alert("שגיאה בעריכת ההודעה");
+            // setIsEditing נשאר true — המשתמש רואה שמשהו השתבש
+        }
     };
 
     return (

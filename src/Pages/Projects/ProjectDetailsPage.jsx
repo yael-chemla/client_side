@@ -17,8 +17,13 @@ export default function ProjectDetailsPage() {
 
     useEffect(() => {
         const loadProject = async () => {
-            const data = await getProjectById(id);
-            setProject(data);
+            try {
+                const data = await getProjectById(id);
+                setProject(data);
+            } catch (err) {
+                alert("שגיאה בטעינת הפרויקט");
+                navigate("/projects"); // הגיוני לחזור אחורה אם הפרויקט לא נטען
+            }
         };
         loadProject();
     }, [id]);

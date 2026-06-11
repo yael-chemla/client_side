@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { uploadProjectImage } from "../../../API/projectImagesAPI";
 import { getProjectById } from "../../../API/projects";
@@ -13,8 +13,13 @@ export default function AddImages() {
     // ✅ שולפים את הפרויקט כדי לדעת אם זה דירה
     useEffect(() => {
         const fetchProject = async () => {
-            const data = await getProjectById(id);
-            setProjectRoomType(data.room_type);
+            try {
+                const data = await getProjectById(id);
+                setProjectRoomType(data.room_type);
+            } catch (err) {
+                console.error("שגיאה בטעינת סוג החדר:", err);
+                // לא חייבים alert כאן — זה מידע משני שמשפיע רק על הצגת ה-select
+            }
         };
         fetchProject();
     }, [id]);
@@ -51,7 +56,7 @@ export default function AddImages() {
                 formData.append("project_id", id);
                 formData.append("is_before", img.is_before);
                 formData.append("room_type", img.room_type);
-                           console.log("שולחת:", img.file.name, "is_before:", img.is_before, "room_type:", img.room_type, "project_id:", id);
+                console.log("שולחת:", img.file.name, "is_before:", img.is_before, "room_type:", img.room_type, "project_id:", id);
 
                 // נשתמש ב-await, אם זה נכשל, הקוד יקפוץ ל-catch
                 await uploadProjectImage(formData);
