@@ -44,9 +44,8 @@ function App() {
               {/* ראוטים שדורשים התחברות */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<MyProfile />} />
-                <Route path="/designer/:id" element={<MyProfile />} />              <Route path="/favorites" element={<FavoritesPage />} />
-                {/* <Route path="/inbox" element={<InboxPage />} />
-                <Route path="/chat/:conversationId" element={<ChatWindow />} /> */}
+                <Route path="/designer/:id" element={<MyProfile />} />
+                <Route path="/favorites" element={<FavoritesPage />} />
                 <Route path="/inbox" element={<ChatPage />} />
                 <Route path="/inbox/:conversationId" element={<ChatPage />} />
               </Route>

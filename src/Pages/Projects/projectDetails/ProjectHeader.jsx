@@ -22,7 +22,6 @@ export default function ProjectHeader({ project, isOwner, onDelete }) {
                     onError={(e) => { e.target.src = "/default-avatar.png"; }}
                 />
 
-                {/* <p className="designer-name">מעצבת: {project.designer_name}</p> */}
                 <Link to={`/designer/${project.designer_id}`} className="designer-name">
                     מעצבת: {project.designer_name}
                 </Link>

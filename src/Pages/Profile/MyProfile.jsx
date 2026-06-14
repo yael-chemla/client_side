@@ -7,7 +7,7 @@ import { API_BASE_URL } from "../../constants";
 import { createConversation } from "../../API/chat";
 
 export default function MyProfile() {
-    const { id } = useParams(); // תופסים את ה-id מה-URL אם קיים
+    const { id } = useParams();
     const [profile, setProfile] = useState(null);
     const [formData, setFormData] = useState({ full_name: "", email: "", phone: "", city: "", bio: "" });
     const [image, setImage] = useState(null);
@@ -15,14 +15,13 @@ export default function MyProfile() {
     const { updateUser } = useAuth();
     const navigate = useNavigate();
 
-    const isOwnProfile = !id; // אם אין ID, זה הפרופיל שלי
+    const isOwnProfile = !id;//אם אין ID סימן שאני בפרופיל של עצמי
 
     useEffect(() => {
         const fetchProfile = async () => {
             setLoading(true);
             try {
                 const data = isOwnProfile ? await getMyProfile() : await getDesignerProfile(id);
-                console.log("Data from server:", data);
                 const profileData = isOwnProfile ? data : data.designer;
                 setProfile(profileData);
                 setFormData({
@@ -33,7 +32,6 @@ export default function MyProfile() {
                     bio: profileData.bio || ""
                 });
             } catch (err) {
-                console.error("Error fetching profile:", err);
                 alert("שגיאה בטעינת פרופיל");
             }
             finally { setLoading(false); }
@@ -117,7 +115,8 @@ export default function MyProfile() {
                     <p><strong>אודות:</strong> {profile.bio}</p>
                     <button className="chat-btn" onClick={handleChat}>
                         שלח הודעה למעצבת
-                    </button>                </div>
+                    </button>
+                </div>
             )}
         </div>
     );

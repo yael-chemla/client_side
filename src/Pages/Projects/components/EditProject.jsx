@@ -1,11 +1,10 @@
-// EditProject.jsx
 import "../../../CSS/projects.css";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProjectById, updateProject } from "../../../API/projects";
 import { deleteImage, updateImage } from "../../../API/projectImagesAPI";
 import EditProjectImages from "./EditProjectImages";
-import { ROOM_TYPES, STYLES } from "../../../constants"; // מייבאים מהקובץ החדש
+import { ROOM_TYPES, STYLES } from "../../../constants"; 
 export default function EditProject() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -97,7 +96,6 @@ export default function EditProject() {
             </select>
         </form>
 
-        {/* התמונות — מחוץ לפורם, רוחב מלא */}
         <div className="edit-images-wrapper">
             <EditProjectImages
                 images={images}

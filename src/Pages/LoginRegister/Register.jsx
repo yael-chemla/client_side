@@ -17,7 +17,6 @@ export default function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // הפונקציה הזו חייבת להיות מוגדרת בתוך הקומפוננטה
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -50,7 +49,7 @@ export default function Register() {
     <div className="auth-container">
       <form className="auth-card" onSubmit={handleSubmit}>
         <h2>יצירת חשבון</h2>
-        {error && <p style={{ color: '#d9534f' }}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         
         <input name="full_name" placeholder="שם מלא" onChange={handleChange} required />
         <input name="email" type="email" placeholder="אימייל" onChange={handleChange} required />
@@ -59,7 +58,7 @@ export default function Register() {
         <input name="city" placeholder="עיר" onChange={handleChange} />
         
         <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontSize: '12px', color: '#888' }}>תמונת פרופיל:</label>
+          <label className="file-label">תמונת פרופיל:</label>
           <input type="file" onChange={handleFileChange} accept="image/*" />
         </div>
         

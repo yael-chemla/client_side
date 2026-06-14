@@ -23,7 +23,6 @@ export default function ProjectCard({ project, isFavorite, onToggleFavorite, sho
       <p>חדר: {project.room_type}</p>
       <p>סגנון: {project.style}</p>
 
-      {/* כאן האיקון מופיע כחלק מהכרטיס בצורה נקייה */}
       <div className="card-actions">
         <button className="view-btn" onClick={() => navigate(`/projects/${project.id}`)}>
           צפה בפרויקט

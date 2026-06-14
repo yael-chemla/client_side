@@ -22,7 +22,7 @@ export default function ProjectDetailsPage() {
                 setProject(data);
             } catch (err) {
                 alert("שגיאה בטעינת הפרויקט");
-                navigate("/projects"); // הגיוני לחזור אחורה אם הפרויקט לא נטען
+                navigate("/projects"); 
             }
         };
         loadProject();
@@ -45,6 +45,7 @@ export default function ProjectDetailsPage() {
     const handleChat = async () => {
         if (!isAuthenticated) {
             navigate('/login');
+            alert("נא התחבר לפני להתכתב בצאט");
             return;
         }
         try {

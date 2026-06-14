@@ -12,7 +12,6 @@ export default function Message({ msg, user, onDelete, onEdit }) {
             setIsEditing(false);
         } catch (err) {
             alert("שגיאה בעריכת ההודעה");
-            // setIsEditing נשאר true — המשתמש רואה שמשהו השתבש
         }
     };
 

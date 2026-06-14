@@ -11,7 +11,6 @@ export default function Login() {
   const { isAuthenticated, login } = useAuth(); 
   const navigate = useNavigate();
 
-  // אם המשתמש כבר מחובר - אין טעם שיהיה בדף התחברות
   if (isAuthenticated) {
     return <Navigate to="/projects" replace />;
   }
@@ -21,13 +20,12 @@ const handleSubmit = async (e) => {
   try {
     const data = await LoginUser(email, password);
     
-    // 2. השרת שלך מחזיר: { success, token, user }
     if (data && data.token) {
-      login(data.token, data.user); // מעדכן את ה-UserContext
+      login(data.token, data.user); 
       navigate("/projects");
     }
   } catch (err) {
-    setError(err.message); // יציג את השגיאה מהשרת ("Invalid email or password")
+    setError(err.message); 
   }
 };
   
@@ -35,7 +33,7 @@ const handleSubmit = async (e) => {
     <div className="auth-container">
       <form className="auth-card" onSubmit={handleSubmit}>
         <h2>התחברות</h2>
-        {error && <p style={{ color: '#d9534f' }}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         
         <input type="email" placeholder="אימייל" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input type="password" placeholder="סיסמה" value={password} onChange={(e) => setPassword(e.target.value)} required />

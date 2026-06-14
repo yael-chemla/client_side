@@ -12,7 +12,6 @@ export default function AddProject() {
         try {
             const newProject = await createProject(formData);
             alert("הפרויקט נוסף! כעת נעבור להוספת תמונות.");
-            // מעבירים את ה-ID לעמוד הבא כדי לדעת לאיזה פרויקט שייכות התמונות
             navigate(`/projects/add-images/${newProject.id}`);
         } catch (err) {
             alert("שגיאה: " + err.message);

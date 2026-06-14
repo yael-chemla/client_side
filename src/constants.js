@@ -16,7 +16,7 @@ export const STYLES = [
 
 ];
 
-// ✅ חדש — סוגי חדרים בתוך דירה
+//  סוגי חדרים בתוך דירה
 export const APARTMENT_ROOM_TYPES = [
     { value: "סלון", label: "סלון" },
     { value: "מטבח", label: "מטבח" },

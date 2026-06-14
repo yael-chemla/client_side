@@ -63,3 +63,23 @@
   font-size: 13px;
   margin-top: 20px;
 }
+
+/* הוסף את אלו בסוף קובץ auth.css */
+
+.error-message {
+  color: #d9534f;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.file-input-wrapper {
+  margin-bottom: 15px;
+}
+
+.file-label {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  margin-bottom: 5px;
+}

@@ -6,11 +6,10 @@ import { APARTMENT_ROOM_TYPES } from "../../../constants";
 
 export default function AddImages() {
     const { id } = useParams();
-    const [images, setImages] = useState([]); // מערך של אובייקטים {file, is_before}
+    const [images, setImages] = useState([]); 
     const [projectRoomType, setProjectRoomType] = useState("");
     const navigate = useNavigate();
 
-    // ✅ שולפים את הפרויקט כדי לדעת אם זה דירה
     useEffect(() => {
         const fetchProject = async () => {
             try {
@@ -18,7 +17,6 @@ export default function AddImages() {
                 setProjectRoomType(data.room_type);
             } catch (err) {
                 console.error("שגיאה בטעינת סוג החדר:", err);
-                // לא חייבים alert כאן — זה מידע משני שמשפיע רק על הצגת ה-select
             }
         };
         fetchProject();
@@ -26,7 +24,6 @@ export default function AddImages() {
 
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files).slice(0, 10);
-        // הופכים כל קובץ לאובייקט עם ערך ברירת מחדל is_before: false
         const newImages = selectedFiles.map(file => ({
             file,
             is_before: false,
@@ -49,25 +46,20 @@ export default function AddImages() {
 
     const handleUpload = async () => {
         try {
-            // 1. העלאת כל התמונות
             for (let img of images) {
                 const formData = new FormData();
                 formData.append("image", img.file);
                 formData.append("project_id", id);
                 formData.append("is_before", img.is_before);
                 formData.append("room_type", img.room_type);
-                console.log("שולחת:", img.file.name, "is_before:", img.is_before, "room_type:", img.room_type, "project_id:", id);
 
-                // נשתמש ב-await, אם זה נכשל, הקוד יקפוץ ל-catch
                 await uploadProjectImage(formData);
             }
 
             alert("הפרויקט והתמונות נוספו בהצלחה!");
-            // 2. ניווט מובטח רק אחרי שהכל הסתיים
             navigate("/projects");
 
         } catch (err) {
-            // אם הגענו לכאן, השרת החזיר שגיאה (500)
             console.error("שגיאה בהעלאת התמונות:", err);
             alert("קרתה שגיאה בהעלאת התמונות. אנא בדקי את החיבור או נסי שוב.");
         }

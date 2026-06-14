@@ -12,32 +12,29 @@ import '../../CSS/projects.css';
 
 
 export default function ProjectsPage() {
-    const [searchParams] = useSearchParams(); // קוראת את ה-URL
+    const [searchParams] = useSearchParams(); 
     const [projects, setProjects] = useState([]);
-    // const [filters, setFilters] = useState({ room_type: "", style: "", designer_name: "", page: 1 });
     const [metadata, setMetadata] = useState({});
     const [favorites, setFavorites] = useState([]);
     const [filters, setFilters] = useState({
         room_type: "",
         style: "",
         designer_name: "",
-        designer_id: searchParams.get("designer_id") || "", // ← שולפת מה-URL
+        designer_id: searchParams.get("designer_id") || "", 
         page: 1
     });
     const { user, isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
-    // 1. טעינת הפרויקטים (והמועדפים אם המשתמש מחובר)
     const loadData = async (currentFilters) => {
         try {
             const data = await getProjects(currentFilters);
             setProjects(data.projects);
             setMetadata(data.metadata);
 
-            // אם המשתמש מחובר, נטען גם את המועדפים שלו
             if (isAuthenticated) {
                 const favs = await getFavorites();
-                setFavorites(favs.map(f => f.id)); // נשמור רק את ה-IDs של הפרויקטים המועדפים
+                setFavorites(favs.map(f => f.id)); 
             }
         } catch (err) {
             console.error("שגיאה בטעינת נתונים:", err);
@@ -46,9 +43,8 @@ export default function ProjectsPage() {
 
     useEffect(() => {
         loadData(filters);
-    }, [filters, isAuthenticated]); // טעינה מחדש אם הפילטרים או מצב ההתחברות השתנו
+    }, [filters, isAuthenticated]); 
 
-    // 2. פונקציית טיפול במועדפים
     const handleToggleFavorite = async (projectId, isFav) => {
         if (!isAuthenticated) {
             alert("יש להתחבר כדי להוסיף למועדפים");
@@ -87,7 +83,6 @@ export default function ProjectsPage() {
                 )}
             </aside>
             <main className="content">
-                {/* מעבירים ל-ProjectList גם את המועדפים ואת פונקציית העדכון */}
                 <ProjectList
                     projects={projects}
                     favorites={favorites}
